@@ -1,0 +1,329 @@
+#include <iostream>
+#include <ctype.h>
+using namespace std;
+
+struct inputelem
+{
+  string name;
+	int amount;
+};
+
+struct element
+{
+	string name;
+	double weight;
+};
+
+element elementinfo (string symbol)
+{
+	if(symbol == "H")
+	{
+		element hydrogen = {"Hydrogen", 1.00794};
+		return hydrogen;
+	}
+	else if(symbol == "He")
+	{
+		element helium= {"Helium", 4.002602};
+		return helium;
+	}
+	else if(symbol == "Li")
+	{
+		element lithium = {"Lithium", 6.941};
+		return lithium;
+	}
+	else if(symbol == "Be")
+	{
+		element beryllium = {"Beryllium", 9.012182};
+		return beryllium;
+	}
+	else if(symbol == "B")
+	{
+		element boron = {"Boron", 10.811};
+		return boron;
+	}
+	else if(symbol == "C")
+	{
+		element carbon = {"Carbon", 9.120107};
+		return carbon;
+	}
+	else if(symbol == "N")
+	{
+		element nitrogen = {"Nitrogen", 14.0067};
+		return nitrogen;
+	}
+	else if(symbol == "O")
+	{
+		element oxygen = {"Oxygen", 15.9994};
+		return oxygen;
+	}
+	else if(symbol == "F")
+	{
+		element fluorine = {"Fluorine", 18.9984032};
+		return fluorine;
+	}
+	else if(symbol == "Ne")
+	{
+		element neon = {"Neon", 20.1797};
+		return neon;
+	}
+	else if(symbol == "Na")
+	{
+		element sodium = {"Sodium", 22.98976};
+		return sodium;
+	}
+	else if(symbol == "Mg")
+	{
+		element magnesium = {"Magnesium", 24.305};
+		return magnesium;
+	}
+	else if(symbol == "Al")
+	{
+		element aluminum = {"Aluminum", 26.9815386};
+		return aluminum;
+	}
+	else if(symbol == "Si")
+	{
+		element silicon = {"Silicon", 28.0855};
+		return silicon;
+	}
+	else if(symbol == "P")
+	{
+		element phosphorus = {"Phosphorus", 30.973762};
+		return phosphorus;
+	}
+	else if(symbol == "S")
+	{
+		element sulfur = {"Sulfur", 32.065};
+		return sulfur;
+	}
+	else if(symbol == "Cl")
+	{
+		element chlorine = {"Chlorine", 35.453};
+		return chlorine;
+	}
+	else if(symbol == "Ar")
+	{
+		element argon = {"Argon", 39.948};
+		return argon;
+	}
+	else if(symbol == "K")
+	{
+		element potassium = {"Potassium", 39.0983};
+		return potassium;
+	}
+	else if(symbol == "Ca")
+	{
+		element calcium = {"Calcium", 40.078};
+		return calcium;
+	}
+	else if(symbol == "Sc")
+	{
+		element scandium = {"Scandium", 44.955912};
+		return scandium;
+	}
+	else if(symbol == "Ti")
+	{
+		element titanium = {"Titanium", 47.867};
+		return titanium;
+	}
+	else if(symbol == "V")
+	{
+		element vanadium = {"Vanadium", 50.9415};
+		return vanadium;
+	}
+	else if(symbol == "Cr")
+	{
+		element chromium = {"Chromium", 51.9961};
+		return chromium;
+	}
+	else if(symbol == "Mn")
+	{
+		element manganese = {"Manganese", 54.938045};
+		return manganese;
+	}
+	else if(symbol == "Fe")
+	{
+		element iron = {"Iron", 55.845};
+		return iron;
+	}
+	else if(symbol == "Co")
+	{
+		element cobalt = {"Cobalt", 58.933195};
+		return cobalt;
+	}
+	else if(symbol == "Ni")
+	{
+		element nickel = {"Nickel", 58.6934};
+		return nickel;
+	}
+	else if(symbol == "Cu")
+	{
+		element copper = {"Copper", 63.546};
+		return copper;
+	}
+	else if(symbol == "Zn")
+	{
+		element zinc = {"Zinc", 65.38};
+		return zinc;
+	}
+	else if(symbol == "Ga")
+	{
+		element gallium = {"Gallium", 69.723};
+		return gallium;
+	}
+	else if(symbol == "Ge")
+	{
+		element germanium = {"Germanium", 72.63};
+		return germanium;
+	}
+	else if(symbol == "As")
+	{
+		element arsenic = {"Arsenic", 74.9216};
+		return arsenic;
+	}
+	else if(symbol == "Se")
+	{
+		element selenium = {"Selenium", 78.96};
+		return selenium;
+	}
+	else if(symbol == "Br")
+	{
+		element bromine = {"Bromine", 79.904};
+		return bromine;
+	}
+	else if(symbol == "Kr")
+	{
+		element krypton = {"Krypton", 83.798};
+		return krypton;
+	}
+}
+
+int main ()
+{
+	bool redo = true;
+	while(redo)
+	{
+		cout << "Welcome to the percent composition doer...thing! Input the formula of the compound you would like to find the composition of.  Please use proper case. (For ex. BaCO3, NOT baco3 or BACO3)" << endl;
+		string input;
+		int counter = 0, tempcounter = 0;
+		bool propinput = true;
+		bool propinputtest = true;
+		while(propinput)
+		{
+			cin >> input;
+			while(counter < input.length()) // goes through every letter and checks if its lower
+			{
+				if(islower(input[counter]) != 0)
+				{
+					tempcounter = counter; // if it is then check if the one after it is lower
+					tempcounter++;
+					if(islower(input[tempcounter]) != 0)
+					{
+						cout << "Come on, guy! I said proper case.  Was " << input << " that what you meant to put in?" << endl; // if thats true shows that it was incorrect case
+						counter = input.length(); // sets counter to the length of the input, causing it to go back to asking for input
+						propinputtest = false; // makes the switch of propinput to false at the end impossible, so it doesn't end the input loop
+					}
+				}
+				counter++;
+			}
+			if(propinputtest) // if it made it through the whole loop without getting to propinputtest = false, then it changes propinput to false and exits the input loop
+			{
+				propinput = false;
+			}
+		} // input retrieval and validation test is complete
+		counter = 0; // reusing variables **GO GREEN**
+		int elemamount = 0; // counting the amount of elements in the input. will make array out of size
+		while(counter < input.length())
+		{
+			if(isupper(input[counter]) != 0)
+			elemamount++;
+		}
+		inputelem elementarray [elemamount]; // once the input string is parsed into each individual element, they will be stored here.
+		element elementdata [elemamount]; // as soon as the input string is parsed and assigned into elementarray, it will be sent against the element library and the actual info will go here
+		counter = 0; // if I do this enough times, I'll have a green thumb
+		int elemcounter = 0;
+		while(elemcounter < elemamount)
+		{
+			if(isupper(input[counter]) != 0)
+			{
+				tempcounter = counter;
+				tempcounter++;
+				if(islower(input[tempcounter]) != 0) // if a letter is upper, and the next is lower, then its an element
+				{
+					string first, second;
+					first = input[counter];
+					second = input[tempcounter]; // store the two letters in the elements symbol
+					string thing = first + second; // concatenate said letters into a string
+					inputelem supathing = {thing, 1};
+					elementarray[elemcounter] = supathing;
+					elemcounter++;
+				}
+				else if(isupper(input[tempcounter]) != 0) // if a letter is upper, and the next is also upper, that means that the first was it's own element
+				{
+					string thing = input[counter];
+					inputelem supathing = {thing, 1};
+					elementarray[elemcounter] = supathing; //takes the initial upper letter and assigns it to a value
+					elemcounter++;
+				}
+				else // if none of these are true, then the next char is a number, in which case the first was again its own element
+				{
+					string first = input[counter];
+					string thing = first;
+					inputelem supathing = {thing, input[tempcounter]};
+					elementarray[elemcounter] = supathing; //takes the initial upper letter and assigns it to a value, along with amount
+					elemcounter++;
+				}
+			}
+			counter++;
+		} // BAMF!! the input string is parsed and set into elementarray with the amount.  next step is to get the weight and name of each element
+		counter = 0; // will we never stop putting stuff inside of you, counter?  YOUR SO WONDERFUL
+		while(counter < elemamounter)
+		{
+			elementdata[counter] = elementinfo(elementarray[counter].name)); // takes all the elements and gets there info from elementinfo and assigns it into elementdata
+			counter++;
+		}
+		double totalval;
+		counter = 0;
+		while(counter < elemamount)
+		{
+			totalval = totalval + (elementdata[counter].weight * elementarray[counter].amount);
+			counter++;
+		}
+		double percents[elemamount];
+		counter = 0;
+		while(counter < elemamount)
+		{
+			percents[counter] = (elementdata[counter].weight * elementarray[counter].amount) * 100.0;
+		}
+		counter = 0;
+		elemamount = elemamount - 1;
+		cout << "The percent Composition of " << input;
+		while(counter < elemamount)
+		{
+			cout << percents[counter] << "% " << elementdata[counter].name << ", ";
+			counter++;
+		}
+		cout << percents[counter << "% " << elementdata[counter].name << '.' << endl;
+		bool miniredo = true;
+		while(miniredo)
+		{
+			cout << "Would you like to do another computation? y/n" << endl;
+			char answer;
+			cin >> answer;
+			if(answer = 'y')
+			{
+				miniredo = false;
+			}
+			else if(answer = 'n')
+			{
+				miniredo = false;
+				redo = false;
+			}
+			else
+			{
+				cout << "Ain't nobody got time for wrong input!  remember all lowercase, and just y for yes, and just n for no." << endl;
+			}
+		}
+	}
+	return 0;
+}
